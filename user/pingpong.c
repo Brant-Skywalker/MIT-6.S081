@@ -1,26 +1,38 @@
-#include "../kernel/types.h"
-#include "../kernel/stat.h"
-#include "../user/user.h"
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
 
-char buf[1];
+char buf[2] = "";
 
 int main(void) {
     int p[2];
     pipe(p);  // Create a new pipe.
     if (0 == fork()) {
-        read(p[0], buf, 1);
+        if (1 != read(p[0], buf, 1)) {
+            fprintf(2, "read error\n");  // 2 is stderr.
+            exit(1);
+        }
         close(p[0]);
-        fprintf(0, "%d: received ping\n", getpid());
-        write(p[1], buf, 1);
+        printf("%d: received ping\n", getpid());
+        if (1 != write(p[1], buf, 1)) {
+            fprintf(2, "write error\n");
+            exit(1);
+        }
         close(p[1]);
         exit(0);
     } else {
-        write(p[1], "a", 1);  // Write to the pipe and close the write side.
+        if (1 != write(p[1], "\x01", 1)) { // Write to the pipe and close the write side.
+            fprintf(2, "write error\n");
+            exit(1);
+        }
         close(p[1]);
         wait((int*) 0);  // Wait for the child process to terminate.
-        read(p[0], buf, 1);
+        if (1 != read(p[0], buf, 1)) {
+            fprintf(2, "read error\n");
+            exit(1);
+        }
         close(p[0]);
-        fprintf(0, "%d: received pong\n", getpid());
+        printf("%d: received pong\n", getpid());
         exit(0);
     }
 }
