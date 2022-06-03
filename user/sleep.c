@@ -3,10 +3,8 @@
 #include "../user/user.h"
 
 int main(int argc, char* argv[]) {
-    int i;
-
     if (argc <= 1) {
-        fprintf(2, "usage: sleep [# ticks...]")
+        fprintf(2, "usage: sleep [# ticks...]");
         exit(1);
     }
 
