@@ -1,7 +1,7 @@
 # MIT 6.S081: Operating System Engineering
 
 This repository contains my solutions to the lab assignments of MIT
-[*CS224n: Natural Language Processing with Deep Learning*](https://pdos.csail.mit.edu/6.828/2020/schedule.html)
+[*Operating System Engineering*](https://pdos.csail.mit.edu/6.828/2020/schedule.html)
 (Fall 2020). If you find any errors, please
 email me at siyuanq4@illinois.edu.
 
