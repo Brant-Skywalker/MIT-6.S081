@@ -8,7 +8,7 @@ void pass(int p_r) {
         exit(0);  // All file descriptors referring to the write end are closed. No need to recurse.
     }
     printf("prime %d\n", div);  // Print the divisor here!
-    int p[2];
+    int p[2];  // Now create a new pipe.
     if (-1 == pipe(p)) {
         fprintf(2, "Failed to create a pipe.\n");
         exit(1);  // OS will close the file descriptors.
@@ -18,7 +18,7 @@ void pass(int p_r) {
         pass(p[0]);  // Simply pass the read end - the recursive call will do the rest.
     } else {  // Current process: sieve composite numbers out and pass prime numbers.
         close(p[0]);  // We are NOT reading from the new pipe!
-        int buf;
+        int buf;  // Read & Write.
         while (0 != read(p_r, &buf, sizeof(int))) {
             if (0 != buf % div) {
                 write(p[1], &buf, sizeof(int));
@@ -38,7 +38,7 @@ int main(void) {
     }
     if (0 == fork()) {  // Child process.
         close(p[1]);  // We don't write here.
-        pass(p[0]);  // Pass the pipe.
+        pass(p[0]);  // Pass the read end of the pipe.
     } else {
         close(p[0]);  // We don't read here.
         int i = 1;
