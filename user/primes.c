@@ -38,7 +38,6 @@ int main(void) {
         close(p[1]);  // We don't write here.
         pass(p[0]);  // Pass the pipe.
         close(p[0]);
-        exit(0);
     } else {
         close(p[0]);  // We don't read here.
         int i = 1;
@@ -47,6 +46,6 @@ int main(void) {
         }
         close(p[1]);
         wait((int*) 0);
-        exit(status);
     }
+    exit(0);
 }
