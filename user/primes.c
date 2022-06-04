@@ -3,14 +3,14 @@
 #include "../user/user.h"
 
 void pass(int p_r) {
-    int p[2];
-    if (-1 == pipe(p)) {
-        fprintf(2, "Failed to create a pipe.\n");
-        exit(1);
-    }
     int div;  // The divisor of the current process.
     if (0 == read(p_r, &div, sizeof(int))) {
         exit(0);  // All file descriptors referring to the write end are closed. No need to recurse.
+    }
+    int p[2];
+    if (-1 == pipe(p)) {
+        fprintf(2, "Failed to create a pipe.\n");
+        exit(1);  // OS will close the file descriptors.
     }
     printf("prime %d\n", div);  // Print the divisor here!
     if (0 == fork()) {  // Child process: read numbers from pipe and recurse.
@@ -37,7 +37,6 @@ int main(void) {
     if (0 == fork()) {  // Child process.
         close(p[1]);  // We don't write here.
         pass(p[0]);  // Pass the pipe.
-        close(p[0]);
     } else {
         close(p[0]);  // We don't read here.
         int i = 1;
