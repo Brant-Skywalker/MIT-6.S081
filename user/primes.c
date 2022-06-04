@@ -14,6 +14,7 @@ void pass(int p_r) {
         close(p[1]);
         exit(0);  // All file descriptors referring to the write end are closed. No need to recurse.
     }
+    printf("prime %d\n", div);  // Print the divisor here!
     if (0 == fork()) {  // Child process: read numbers from pipe and recurse.
         pass(p[0]);  // Simply pass the read end - the recursive call will do the rest.
     } else {  // Current process: sieve composite numbers out and pass prime numbers.
