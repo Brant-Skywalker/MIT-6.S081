@@ -12,7 +12,7 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 
 ### Current Progress
 
-- [ ] **Lab util: Unix utilities** :point_left:
+- [ ] [**Lab util: Unix utilities**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util) :point_left:
 - [ ] Lab syscall: System calls
 - [ ] Lab pgtbl: Page tables
 - [ ] Lab traps: Trap
