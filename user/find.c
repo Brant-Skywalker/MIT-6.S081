@@ -41,11 +41,11 @@ void find(char* path, char* pattern) {
                 }
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
-//                find(buf, pattern);
+                find(buf, pattern);
             }
             break;
     }
-    return;
+    close(fd);
 }
 
 int main(int argc, char* argv[]) {
