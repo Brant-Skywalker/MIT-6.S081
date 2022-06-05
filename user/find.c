@@ -1,7 +1,7 @@
-#include "../kernel/types.h"
-#include "../kernel/stat.h"
-#include "../user/user.h"
-#include "../kernel/fs.h"
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
+#include "kernel/fs.h"
 
 void find(const char* path, const char* pattern) {
     char buf[512];
