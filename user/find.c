@@ -53,7 +53,7 @@ void find(const char* path, const char* pattern) {
                 switch (st.type) {
                     case T_FILE:
                         if (0 == strcmp(de.name, pattern)) {
-                            printf("%s\n", path);
+                            printf("%s\n", buf);
                         }
                         break;
                     case T_DIR:
