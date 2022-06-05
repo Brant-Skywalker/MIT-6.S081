@@ -5,7 +5,7 @@
 void pass(int p_r) {
     int div;  // The divisor of the current process.
     if (0 == read(p_r, &div, sizeof(int))) {
-        exit(0);  // All file descriptors referring to the write end are closed. No need to recurse.
+        return;  // All file descriptors referring to the write end are closed. No need to recurse.
     }
     printf("prime %d\n", div);  // Print the divisor here!
     int p[2];  // Now create a new pipe.
@@ -27,7 +27,7 @@ void pass(int p_r) {
         close(p[1]);  // Done writing.
         wait((int*) 0);
     }
-    exit(0);  // OS will close the file descriptors.
+    return;
 }
 
 int main(void) {
