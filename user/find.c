@@ -3,15 +3,6 @@
 #include "../user/user.h"
 #include "../kernel/fs.h"
 
-int checker(char* path, char* pattern) {
-    char* p;
-
-    // Find the first character after last slash.
-    for (p = path + strlen(path); p >= path && *p != '/'; --p);
-    ++p;
-    return 0 == strcmp(p, pattern);
-}
-
 void find(char* path, char* pattern) {
     char buf[512];
     char* p;
@@ -48,7 +39,7 @@ void find(char* path, char* pattern) {
                 }
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
-                if (0 > fstat(fd, &st)) {
+                if (0 > stat(buf, &st)) {
                     fprintf(2, "find: cannot stat %s\n", path);
                     close(fd);
                     continue;
