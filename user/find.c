@@ -9,6 +9,7 @@ void find(char* path, char* pattern) {
     int fd;
     struct dirent de;
     struct stat st;
+
     if (0 > (fd = open(path, 0))) {
         fprintf(2, "find: cannot open %s\n", path);
         return;
@@ -19,6 +20,7 @@ void find(char* path, char* pattern) {
         close(fd);
         return;
     }
+
     switch (st.type) {
         case T_FILE:
             if (0 == strcmp(path, pattern)) {
@@ -39,7 +41,7 @@ void find(char* path, char* pattern) {
                 }
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
-                find(buf, pattern);
+//                find(buf, pattern);
             }
             break;
     }
