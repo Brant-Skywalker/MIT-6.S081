@@ -53,6 +53,7 @@ void find(const char* path, const char* pattern) {
                         break;
                 }
             }
+            break;
     }
     close(fd);
 }
