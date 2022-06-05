@@ -41,7 +41,7 @@ void find(char const *path, char const *target)
                     continue;
                 }
                 if(st.type == T_DIR){
-                    find_helper(buf, target);
+                    find(buf, target);
                 }else if (st.type == T_FILE){
                     if (strcmp(de.name, target) == 0)
                     {
