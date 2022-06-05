@@ -4,8 +4,10 @@
 #include "../kernel/fs.h"
 
 int checker(char* path, char* pattern) {
+    char* p
+
     // Find the first character after last slash.
-    for (char* p = path + strlen(path); p >= path && *p != '/'; --p);
+    for (p = path + strlen(path); p >= path && *p != '/'; --p);
     ++p;
     return 0 == strcmp(p, pattern);
 }
