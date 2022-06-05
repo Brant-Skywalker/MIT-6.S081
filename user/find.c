@@ -32,11 +32,11 @@ void find(const char* path, const char* pattern) {
             strcpy(buf, path);  // Save the path.
             p = buf + strlen(buf);   // Move `p` to the end of path.
             *p++ = '/';  // Attach a slash to it.
-            while (sizeof(de) == read(fd, &de, sizeof(de))) {  // Dirent read successfully.
+            while (sizeof(de) == read(fd, &de, sizeof(de))) {  // Check all files in the current directory.
                 if (0 == de.inum || 0 == strcmp(de.name, ".") || 0 == strcmp(de.name, "..")) {
                     continue;
                 }
-                memmove(p, de.name, DIRSIZ);
+                memmove(p, de.name, DIRSIZ);  // Concatenate the path.
                 p[DIRSIZ] = 0;
                 if (0 > stat(buf, &st)) {
                     fprintf(2, "find: cannot stat %s\n", buf);
@@ -49,7 +49,7 @@ void find(const char* path, const char* pattern) {
                         }
                         break;
                     case T_DIR:
-                        find(buf, pattern);
+                        find(buf, pattern);  // Recurse on directory!
                         break;
                 }
             }
@@ -59,7 +59,7 @@ void find(const char* path, const char* pattern) {
 
 int main(int argc, char* argv[]) {
     if (3 != argc) {
-        fprintf(2, "usage: find [starting directory] [pattern]\n");
+        fprintf(2, "usage: find [path] [pattern]\n");
         exit(1);
     }
     find(argv[1], argv[2]);
