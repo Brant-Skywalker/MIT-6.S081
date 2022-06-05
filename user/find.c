@@ -43,21 +43,22 @@ void find(const char* path, const char* pattern) {
                     fprintf(2, "find: cannot stat %s\n", buf);
                     continue;
                 }
-//            while (read(fd, &de, sizeof(de)) == sizeof(de)) {
-//                if (de.inum == 0 || strcmp(de.name, ".") == 0 || strcmp(de.name, "..") == 0)
-//                    continue;
-//                memmove(p, de.name, DIRSIZ);
-//                p[DIRSIZ] = 0;
-//                if (stat(buf, &st) < 0) {
-//                    printf("find: cannot stat %s\n", buf);
-//                    continue;
+//                if (st.type == T_DIR) {
+//                    find(buf, pattern);
+//                } else if (st.type == T_FILE) {
+//                    if (strcmp(de.name, pattern) == 0) {
+//                        printf("%s\n", buf);
+//                    }
 //                }
-                if (st.type == T_DIR) {
-                    find(buf, pattern);
-                } else if (st.type == T_FILE) {
-                    if (strcmp(de.name, pattern) == 0) {
-                        printf("%s\n", buf);
-                    }
+                switch (st.type) {
+                    case T_FILE:
+                        if (0 == strcmp(de.name, pattern)) {
+                            printf("%s\n", path);
+                        }
+                        break;
+                    case T_DIR:
+                        find(buf, pattern);  // Recurse on directory!
+                        break;
                 }
             }
             break;
