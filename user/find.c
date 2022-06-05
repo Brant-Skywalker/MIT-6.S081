@@ -43,6 +43,7 @@ void find(char* path, char* pattern) {
                     fprintf(2, "find: cannot stat %s\n", buf);
                     continue;
                 }
+                printf("%s %d %d %d\n", buf, st.type, st.ino, st.size);
                 switch (st.type) {
                     case T_FILE:
                         if (0 == strcmp(de.name, pattern)) {
