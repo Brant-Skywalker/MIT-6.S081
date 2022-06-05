@@ -57,9 +57,9 @@ void find(char* path, char* pattern) {
                     continue;
                 }
                 if (st.type == T_DIR) {
-                    find(buf, target);
+                    find(buf, pattern);
                 } else if (st.type == T_FILE) {
-                    if (strcmp(de.name, target) == 0) {
+                    if (strcmp(de.name, pattern) == 0) {
                         printf("%s\n", buf);
                     }
                 }
