@@ -3,48 +3,63 @@
 #include "../user/user.h"
 #include "../kernel/fs.h"
 
-void find(char const *path, char const *target)
-{
-    char buf[512], *p;
+//void find(char const* path, char const* target) {
+//    char buf[512], * p;
+//    int fd;
+//    struct dirent de;
+//    struct stat st;
+void find(char* path, char* pattern) {
+    char buf[512];
+    char* p;
     int fd;
     struct dirent de;
     struct stat st;
-    if((fd = open(path, 0)) < 0){
+//    if ((fd = open(path, 0)) < 0) {
+//        fprintf(2, "find: cannot open %s\n", path);
+//        exit(1);
+//    }
+//
+//    if (fstat(fd, &st) < 0) {
+//        fprintf(2, "find: cannot stat %s\n", path);
+//        exit(1);
+//    }
+
+    if (0 > (fd = open(path, 0))) {
         fprintf(2, "find: cannot open %s\n", path);
-        exit(1);
+        return;
     }
 
-    if(fstat(fd, &st) < 0){
+    if (0 > fstat(fd, &st)) {
         fprintf(2, "find: cannot stat %s\n", path);
-        exit(1);
+        close(fd);
+        return;
     }
 
-    switch(st.type){
+    switch (st.type) {
         case T_FILE:
             fprintf(2, "Usage: find dir file\n");
             exit(1);
         case T_DIR:
-            if(strlen(path) + 1 + DIRSIZ + 1 > sizeof buf){
+            if (strlen(path) + 1 + DIRSIZ + 1 > sizeof buf) {
                 printf("find: path too long\n");
                 break;
             }
             strcpy(buf, path);
             p = buf + strlen(buf);
             *p++ = '/';
-            while(read(fd, &de, sizeof(de)) == sizeof(de)){
+            while (read(fd, &de, sizeof(de)) == sizeof(de)) {
                 if (de.inum == 0 || strcmp(de.name, ".") == 0 || strcmp(de.name, "..") == 0)
                     continue;
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
-                if(stat(buf, &st) < 0){
+                if (stat(buf, &st) < 0) {
                     printf("find: cannot stat %s\n", buf);
                     continue;
                 }
-                if(st.type == T_DIR){
+                if (st.type == T_DIR) {
                     find(buf, target);
-                }else if (st.type == T_FILE){
-                    if (strcmp(de.name, target) == 0)
-                    {
+                } else if (st.type == T_FILE) {
+                    if (strcmp(de.name, target) == 0) {
                         printf("%s\n", buf);
                     }
                 }
