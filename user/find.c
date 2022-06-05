@@ -32,12 +32,10 @@ void find(char* path, char* pattern) {
 
     switch (st.type) {
         case T_FILE:
-            if (checker(path, pattern)) {
-                printf("%s\n", path);
-            }
+            fprintf(2, "usage: find [starting directory] [pattern]\n");
             break;
         case T_DIR:
-            if (sizeof buf < strlen(path) + 1 + DIRSIZ + 1) {
+            if (sizeof(buf) < strlen(path) + 1 + DIRSIZ + 1) {
                 printf("find: path too long\n");
                 break;
             }
@@ -45,12 +43,25 @@ void find(char* path, char* pattern) {
             p = buf + strlen(buf);   // Move `p` to the end of path.
             *p++ = '/';  // Attach a slash to it.
             while (sizeof(de) == read(fd, &de, sizeof(de))) {  // Dirent read successfully.
-                if (0 == de.inum) {
+                if (0 == de.inum || 0 == strcmp(de.name, ".") || 0 == strcmp(de.name, "..")) {
                     continue;
                 }
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
-                find(buf, pattern);
+                if (0 > fstat(fd, &st)) {
+                    fprintf(2, "find: cannot stat %s\n", path);
+                    close(fd);
+                    return;
+                }
+            }
+            switch (st.type) {
+                case T_FILE:
+                    if (0 == strcmp(de.name, pattern)) {
+                        printf("%s\n", buf);
+                    }
+                    break;
+                case T_DIR:
+                    find(buf, pattern);
             }
             break;
     }
