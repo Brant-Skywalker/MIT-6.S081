@@ -51,17 +51,18 @@ void find(char* path, char* pattern) {
                 if (0 > fstat(fd, &st)) {
                     fprintf(2, "find: cannot stat %s\n", path);
                     close(fd);
-                    return;
+                    continue;
                 }
-            }
-            switch (st.type) {
-                case T_FILE:
-                    if (0 == strcmp(de.name, pattern)) {
-                        printf("%s\n", buf);
-                    }
-                    break;
-                case T_DIR:
-                    find(buf, pattern);
+                switch (st.type) {
+                    case T_FILE:
+                        if (0 == strcmp(de.name, pattern)) {
+                            printf("%s\n", buf);
+                        }
+                        break;
+                    case T_DIR:
+                        find(buf, pattern);
+                        break;
+                }
             }
             break;
     }
