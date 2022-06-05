@@ -3,13 +3,6 @@
 #include "../user/user.h"
 #include "../kernel/fs.h"
 
-int checker(const char* path, const char* pattern) {
-    const char* p;
-    for (p = path + strlen(path); p >= path && *p != '/'; --p);
-    ++p;
-    return 0 == strcmp(p, pattern);
-}
-
 void find(const char* path, const char* pattern) {
     char buf[512];
     char* p;
@@ -30,9 +23,6 @@ void find(const char* path, const char* pattern) {
 
     switch (st.type) {
         case T_FILE:
-            if (checker(path, pattern)) {
-                printf("%s\n", path);
-            }
             break;
         case T_DIR:
             if (sizeof(buf) < strlen(path) + 1 + DIRSIZ + 1) {
@@ -52,7 +42,16 @@ void find(const char* path, const char* pattern) {
                     fprintf(2, "find: cannot stat %s\n", buf);
                     continue;
                 }
-                find(buf, pattern);
+                switch (st.type) {
+                    case T_FILE:
+                        if (0 == strcmp(de.name, pattern)) {
+                            printf("%s\n", path);
+                        }
+                        break;
+                    case T_DIR:
+                        find(buf, pattern);
+                        break;
+                }
             }
     }
     close(fd);
