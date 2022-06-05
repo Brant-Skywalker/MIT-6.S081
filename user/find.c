@@ -3,6 +3,13 @@
 #include "../user/user.h"
 #include "../kernel/fs.h"
 
+int checker(char* path, char* pattern) {
+    // Find the first character after last slash.
+    for (char* p = path + strlen(path); p >= path && *p != '/'; --p);
+    ++p;
+    return 0 == strcmp(p, pattern);
+}
+
 void find(char* path, char* pattern) {
     char buf[512];
     char* p;
@@ -23,7 +30,7 @@ void find(char* path, char* pattern) {
 
     switch (st.type) {
         case T_FILE:
-            if (0 == strcmp(path, pattern)) {
+            if (checker(path, pattern)) {
                 printf("%s\n", path);
             }
             break;
