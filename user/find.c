@@ -3,7 +3,7 @@
 #include "../user/user.h"
 #include "../kernel/fs.h"
 
-void find(const char* path, const char* pattern) {
+void find(char* path, char* pattern) {
     char buf[512];
     char* p;
     int fd;
