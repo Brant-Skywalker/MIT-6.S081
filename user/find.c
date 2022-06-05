@@ -32,7 +32,6 @@ void find(const char* path, const char* pattern) {
             strcpy(buf, path);  // Save the path.
             p = buf + strlen(buf);   // Move `p` to the end of path.
             *p++ = '/';  // Attach a slash to it.
-
             while (sizeof(de) == read(fd, &de, sizeof(de))) {  // Check all files in the current directory.
                 if (0 == de.inum || 0 == strcmp(de.name, ".") || 0 == strcmp(de.name, "..")) {
                     continue;
@@ -43,13 +42,6 @@ void find(const char* path, const char* pattern) {
                     fprintf(2, "find: cannot stat %s\n", buf);
                     continue;
                 }
-//                if (st.type == T_DIR) {
-//                    find(buf, pattern);
-//                } else if (st.type == T_FILE) {
-//                    if (strcmp(de.name, pattern) == 0) {
-//                        printf("%s\n", buf);
-//                    }
-//                }
                 switch (st.type) {
                     case T_FILE:
                         if (0 == strcmp(de.name, pattern)) {
@@ -65,28 +57,6 @@ void find(const char* path, const char* pattern) {
     }
     close(fd);
 }
-
-//            while (sizeof(de) == read(fd, &de, sizeof(de))) {  // Check all files in the current directory.
-//                if (0 == de.inum || 0 == strcmp(de.name, ".") || 0 == strcmp(de.name, "..")) {
-//                    continue;
-//                }
-//                memmove(p, de.name, DIRSIZ);  // Concatenate the path.
-//                p[DIRSIZ] = 0;
-//                if (0 > stat(buf, &st)) {
-//                    fprintf(2, "find: cannot stat %s\n", buf);
-//                    continue;
-//                }
-//                switch (st.type) {
-//                    case T_FILE:
-//                        if (0 == strcmp(de.name, pattern)) {
-//                            printf("%s\n", path);
-//                        }
-//                        break;
-//                    case T_DIR:
-//                        find(buf, pattern);  // Recurse on directory!
-//                        break;
-//                }
-//            }
 
 int main(int argc, char* argv[]) {
     if (3 != argc) {
