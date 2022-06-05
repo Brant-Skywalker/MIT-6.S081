@@ -37,16 +37,25 @@ void find(char* path, char* pattern) {
 
     switch (st.type) {
         case T_FILE:
-            fprintf(2, "Usage: find dir file\n");
-            exit(1);
+            fprintf(2, "usage: find [starting directory] [pattern]\n");
+            break;
+
         case T_DIR:
-            if (strlen(path) + 1 + DIRSIZ + 1 > sizeof buf) {
+            if (sizeof(buf) < strlen(path) + 1 + DIRSIZ + 1) {
                 printf("find: path too long\n");
                 break;
             }
-            strcpy(buf, path);
-            p = buf + strlen(buf);
-            *p++ = '/';
+            strcpy(buf, path);  // Save the path.
+            p = buf + strlen(buf);   // Move `p` to the end of path.
+            *p++ = '/';  // Attach a slash to it.
+//        case T_DIR:
+//            if (strlen(path) + 1 + DIRSIZ + 1 > sizeof buf) {
+//                printf("find: path too long\n");
+//                break;
+//            }
+//            strcpy(buf, path);
+//            p = buf + strlen(buf);
+//            *p++ = '/';
             while (read(fd, &de, sizeof(de)) == sizeof(de)) {
                 if (de.inum == 0 || strcmp(de.name, ".") == 0 || strcmp(de.name, "..") == 0)
                     continue;
