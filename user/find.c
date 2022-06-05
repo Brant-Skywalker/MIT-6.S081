@@ -48,21 +48,15 @@ void find(char* path, char* pattern) {
             strcpy(buf, path);  // Save the path.
             p = buf + strlen(buf);   // Move `p` to the end of path.
             *p++ = '/';  // Attach a slash to it.
-//        case T_DIR:
-//            if (strlen(path) + 1 + DIRSIZ + 1 > sizeof buf) {
-//                printf("find: path too long\n");
-//                break;
-//            }
-//            strcpy(buf, path);
-//            p = buf + strlen(buf);
-//            *p++ = '/';
-            while (read(fd, &de, sizeof(de)) == sizeof(de)) {
-                if (de.inum == 0 || strcmp(de.name, ".") == 0 || strcmp(de.name, "..") == 0)
+
+            while (sizeof(de) == read(fd, &de, sizeof(de))) {  // Dirent read successfully.
+                if (0 == de.inum || 0 == strcmp(de.name, ".") || 0 == strcmp(de.name, "..")) {
                     continue;
+                }
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
-                if (stat(buf, &st) < 0) {
-                    printf("find: cannot stat %s\n", buf);
+                if (0 > stat(buf, &st)) {
+                    fprintf(2, "find: cannot stat %s\n", buf);
                     continue;
                 }
                 if (st.type == T_DIR) {
@@ -73,6 +67,18 @@ void find(char* path, char* pattern) {
                     }
                 }
             }
+//                switch (st.type) {
+//                    case T_FILE:
+//                        if (0 == strcmp(de.name, pattern)) {
+//                            printf("%s\n", buf);
+//                        }
+//                        break;
+//                    case T_DIR:
+//                        find(buf, pattern);
+//                        break;
+//                }
+//                break;
+//            }
             break;
     }
     close(fd);
