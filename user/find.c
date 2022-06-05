@@ -40,8 +40,7 @@ void find(char* path, char* pattern) {
                 memmove(p, de.name, DIRSIZ);
                 p[DIRSIZ] = 0;
                 if (0 > stat(buf, &st)) {
-                    fprintf(2, "find: cannot stat %s\n", path);
-                    close(fd);
+                    fprintf(2, "find: cannot stat %s\n", buf);
                     continue;
                 }
                 switch (st.type) {
