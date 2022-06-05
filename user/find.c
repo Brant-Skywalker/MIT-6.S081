@@ -3,7 +3,7 @@
 #include "../user/user.h"
 #include "../kernel/fs.h"
 
-void checker(const char* path, const char* pattern) {
+int checker(const char* path, const char* pattern) {
     const char* p;
     for (p = path + strlen(path); p >= path && *p != '/'; --p);
     ++p;
