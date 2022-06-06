@@ -22,7 +22,10 @@ int get_argv(char** args, int i) {
             exit(1);
         }
     }
-    if (0 == n) { return 0; }  // No argument read from fd 0.
+    if (0 == n) {
+        printf("RETURN 0\n");
+        return 0;
+    }  // No argument read from fd 0.
     buf[n] = '\0';  // Terminate with nul.
     int p = 0;
     char* ptr = buf;
