@@ -51,15 +51,15 @@ int main(int argc, char* argv[]) {
     char cmd[strlen(argv[1]) + 1];  // The passed-in command.
     strcpy(cmd, argv[1]);
     char* args[MAXARG];  // Array of pointers.
-    for (int i = 2; i < argc; ++i) {  // Save initial arguments.
-        args[i - 2] = malloc(strlen(argv[i]) + 1);
-        strcpy(args[i - 2], argv[i]);
-        printf("%s\n", args[i - 2]);
+    for (int i = 1; i < argc; ++i) {  // Save initial arguments.
+        args[i - 1] = malloc(strlen(argv[i]) + 1);
+        strcpy(args[i - 1], argv[i]);
+        printf("%s\n", args[i - 1]);
     }
-    while (get_argv(args, argc - 2)) {
-        printf("Command: %s, Arguments: %s, %s, %s\n", cmd, args[0], args[1], args[2]);
+    while (get_argv(args, argc - 1)) {
+        printf("Command: %s, Arguments: %s, %s, %s\n", cmd, args[1], args[2], args[3]);
         if (0 == fork()) {
-            exec(cmd, args);
+            exec(cmd, args);  // IMPORTANT: Exec ignores args[0]!!!
             fprintf(2, "exec %s failed\n", cmd);
             exit(1);
         } else {
