@@ -25,13 +25,14 @@ int get_argv(char** args, int i) {
     if (0 == n) { return 0; }  // No argument read from fd 0.
     buf[n] = '\0';  // Terminate with nul.
     int p = 0;
+    char* arr = buf;
     while (p < n) {   // Now split the line by spaces.
-        while (p < n && ' ' != buf[p]) { ++p; }
-        if (p < n) { buf[p] = '\0'; }  // Split the string.
-        args[i] = malloc(strlen(buf) + 1);
-        strcpy(args[i++], buf);  // Copy the new argument and increment argc.
-        while (p < n && ' ' == buf[p]) { ++p; }
-        if (p < n) { buf += p; }
+        while (p < n && ' ' != arr[p]) { ++p; }
+        if (p < n) { arr[p] = '\0'; }  // Split the string.
+        args[i] = malloc(strlen(arr) + 1);
+        strcpy(args[i++], arr);  // Copy the new argument and increment argc.
+        while (p < n && ' ' == arr[p]) { ++p; }
+        if (p < n) { arr += p; }
     }
     args[i] = 0;  // End of argv.
     return 1;
