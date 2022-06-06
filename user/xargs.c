@@ -7,7 +7,7 @@
 /*!
  * @brief This function reads an individual line of input argument.
  * NOTE: This function reads arguments from file descriptor 0.
- * @param args is ptray of character strings (resulting argv).
+ * @param args is array of character strings (resulting argv).
  * @param i is the original number of arguments.
  * @return 1 if new argv added, 0 otherwise.
  */
@@ -47,12 +47,12 @@ int main(int argc, char* argv[]) {
     char cmd[strlen(argv[1]) + 1];  // The passed-in command.
     strcpy(cmd, argv[1]);
     char* args[MAXARG];  // Array of pointers.
-    for (int i = 1; i < argc; ++i) {  // Save initial arguments.
-        args[i - 1] = malloc(strlen(argv[i]) + 1);
-        strcpy(args[i - 1], argv[i]);
-        printf("%s\n", args[i - 1]);
+    for (int i = 2; i < argc; ++i) {  // Save initial arguments.
+        args[i - 2] = malloc(strlen(argv[i]) + 1);
+        strcpy(args[i - 2], argv[i]);
+        printf("%s\n", args[i - 2]);
     }
-    while (get_argv(args, argc - 1)) {
+    while (get_argv(args, argc - 2)) {
         if (0 == fork()) {
             exec(cmd, args);
             fprintf(2, "exec %s failed\n", cmd);
