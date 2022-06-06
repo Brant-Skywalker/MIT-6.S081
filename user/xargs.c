@@ -46,10 +46,11 @@ int main(int argc, char* argv[]) {
     }
     char cmd[strlen(argv[1]) + 1];  // The passed-in command.
     strcpy(cmd, argv[1]);
-    char* args[MAXARG];  // ptray of pointers.
+    char* args[MAXARG];  // Array of pointers.
     for (int i = 1; i < argc; ++i) {  // Save initial arguments.
         args[i - 1] = malloc(strlen(argv[i]) + 1);
         strcpy(args[i - 1], argv[i]);
+        printf("%s\n", args[i - 1]);
     }
     while (get_argv(args, argc - 1)) {
         if (0 == fork()) {
