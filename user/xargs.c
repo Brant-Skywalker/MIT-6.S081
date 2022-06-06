@@ -16,17 +16,13 @@ int get_argv(char** args, int i) {
     int n = 0;
     char buf[BUFSIZE];
     while (1 == read(0, buf + n, 1)) {  // Read until newline character met.
-        printf("%c\n", buf[n]);
         if ('\n' == buf[n++]) { break; }
         if (BUFSIZE == n) {
             fprintf(2, "xargs: input arg too long\n");
             exit(1);
         }
     }
-    if (0 == n) {
-        printf("RETURN 0\n");
-        return 0;
-    }  // No argument read from fd 0.
+    if (0 == n) { return 0; }  // No argument read from fd 0.
     buf[n] = '\0';  // Terminate with nul.
     int p = 0;
     char* ptr = buf;
@@ -51,13 +47,12 @@ int main(int argc, char* argv[]) {
     char cmd[strlen(argv[1]) + 1];  // The passed-in command.
     strcpy(cmd, argv[1]);
     char* args[MAXARG];  // Array of pointers.
-    for (int i = 1; i < argc; ++i) {  // Save initial arguments.
+    for (int i = 1; i < argc; ++i) {  // Save initial arguments. Deliberately sparing out argv[0].
         args[i - 1] = malloc(strlen(argv[i]) + 1);
         strcpy(args[i - 1], argv[i]);
         printf("%s\n", args[i - 1]);
     }
     while (get_argv(args, argc - 1)) {
-        printf("Command: %s, Arguments: %s, %s, %s\n", cmd, args[1], args[2], args[3]);
         if (0 == fork()) {
             exec(cmd, args);  // IMPORTANT: Exec ignores args[0]!!!
             fprintf(2, "exec %s failed\n", cmd);
@@ -66,7 +61,7 @@ int main(int argc, char* argv[]) {
             wait((int*) 0);
         }
     }
-    for (int i = 0; i < MAXARG; ++i) {
+    for (int i = 1; i < MAXARG; ++i) {
         if (0 == args[i]) { break; }
         free(args[i]);
     }
