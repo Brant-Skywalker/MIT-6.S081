@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
         printf("%s\n", args[i - 2]);
     }
     while (get_argv(args, argc - 2)) {
-        printf("Command: %s, Arguments: %s\n", cmd, args);
+        printf("Command: %s, Arguments: %s, %s, %s\n", cmd, args[0], args[1], args[2]);
         if (0 == fork()) {
             exec(cmd, args);
             fprintf(2, "exec %s failed\n", cmd);
