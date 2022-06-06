@@ -16,8 +16,8 @@ int get_argv(char** args, int i) {
     int n = 0;
     char buf[BUFSIZE];
     while (1 == read(0, buf + n, 1)) {  // Read until newline character met.
-        if ('\n' == buf[n++]) { break; }
-        if (BUFSIZE == n) {
+        if ('\n' == buf[n]) { break; }
+        if (BUFSIZE == ++n) {
             fprintf(2, "xargs: input arg too long\n");
             exit(1);
         }
