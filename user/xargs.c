@@ -7,7 +7,7 @@
 /*!
  * @brief This function reads an individual line of input argument.
  * NOTE: This function reads arguments from file descriptor 0.
- * @param args is array of character strings (resulting argv).
+ * @param args is ptray of character strings (resulting argv).
  * @param i is the original number of arguments.
  * @return 1 if new argv added, 0 otherwise.
  */
@@ -25,14 +25,15 @@ int get_argv(char** args, int i) {
     if (0 == n) { return 0; }  // No argument read from fd 0.
     buf[n] = '\0';  // Terminate with nul.
     int p = 0;
-    char* arr = buf;
+    char* ptr = buf;
     while (p < n) {   // Now split the line by spaces.
-        while (p < n && ' ' != arr[p]) { ++p; }
-        if (p < n) { arr[p] = '\0'; }  // Split the string.
-        args[i] = malloc(strlen(arr) + 1);
-        strcpy(args[i++], arr);  // Copy the new argument and increment argc.
-        while (p < n && ' ' == arr[p]) { ++p; }
-        if (p < n) { arr += p; }
+        while (p < n && ' ' != ptr[p]) { ++p; }
+        if (p < n) { break; }
+        ptr[p] = '\0';  // Split the string.
+        args[i] = malloc(strlen(ptr) + 1);
+        strcpy(args[i++], ptr);  // Copy the new argument and increment argc.
+        while (p < n && ' ' == ptr[p]) { ++p; }
+        ptr = buf + p;  // Point `ptr` to the head of next argument.
     }
     args[i] = 0;  // End of argv.
     return 1;
@@ -45,7 +46,7 @@ int main(int argc, char* argv[]) {
     }
     char cmd[strlen(argv[1]) + 1];  // The passed-in command.
     strcpy(cmd, argv[1]);
-    char* args[MAXARG];  // Array of pointers.
+    char* args[MAXARG];  // ptray of pointers.
     for (int i = 1; i < argc; ++i) {  // Save initial arguments.
         args[i - 1] = malloc(strlen(argv[i]) + 1);
         strcpy(args[i - 1], argv[i]);
