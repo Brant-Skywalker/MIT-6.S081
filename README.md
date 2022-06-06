@@ -12,8 +12,8 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 
 ### Current Progress
 
-- [ ] [**Lab util: Unix utilities**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util) :point_left:
-- [ ] Lab syscall: System calls
+- [x] [Lab util: Unix utilities](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util)
+- [ ] [**Lab syscall: System calls**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall) :point_left:
 - [ ] Lab pgtbl: Page tables
 - [ ] Lab traps: Trap
 - [ ] Lab lazy: Lazy allocation
@@ -27,3 +27,5 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 ### Update History
 
 **Jun. 3, 2022** - Happy summer holiday! Let's start lab `util`.
+
+**Jun. 6, 2022** - Lab `util` completed.
