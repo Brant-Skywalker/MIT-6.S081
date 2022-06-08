@@ -22,3 +22,7 @@ xv6.out*
 submissions/
 ph
 barrier
+
+cmake-build-debug/
+CMakeLists.txt
+.idea/
