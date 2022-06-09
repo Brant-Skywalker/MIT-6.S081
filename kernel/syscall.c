@@ -25,17 +25,17 @@ int
 fetchstr(uint64 addr, char *buf, int max)
 {
   struct proc *p = myproc();
-  int err = copyinstr(p->pagetable, buf, addr, max);
+  int err = copyinstr(p->pagetable, buf, addr, max);  // This guy does the hard work.
   if(err < 0)
     return err;
   return strlen(buf);
 }
 
 static uint64
-argraw(int n)
+argraw(int n)  // Retrieve the appropriate saved user register.
 {
   struct proc *p = myproc();
-  switch (n) {
+  switch (n) {  // Register id.
   case 0:
     return p->trapframe->a0;
   case 1:
@@ -57,7 +57,7 @@ argraw(int n)
 int
 argint(int n, int *ip)
 {
-  *ip = argraw(n);
+  *ip = argraw(n);  // Saved to a 32-bit int.
   return 0;
 }
 
@@ -67,7 +67,7 @@ argint(int n, int *ip)
 int
 argaddr(int n, uint64 *ip)
 {
-  *ip = argraw(n);
+  *ip = argraw(n);  // Saved to a uint64 (pointer).
   return 0;
 }
 
@@ -105,6 +105,7 @@ extern uint64 sys_wait(void);
 extern uint64 sys_write(void);
 extern uint64 sys_uptime(void);
 
+// An array of function pointers with no args, returning uint64.
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
@@ -135,9 +136,9 @@ syscall(void)
   int num;
   struct proc *p = myproc();
 
-  num = p->trapframe->a7;
+  num = p->trapframe->a7;  // Retrives the system call number from the saved a7.
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
-    p->trapframe->a0 = syscalls[num]();
+    p->trapframe->a0 = syscalls[num]();  // Call syscall. Saves the return value in a0. 
   } else {
     printf("%d %s: unknown sys call %d\n",
             p->pid, p->name, num);

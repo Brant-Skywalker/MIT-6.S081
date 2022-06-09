@@ -24,13 +24,13 @@ argfd(int n, int *pfd, struct file **pf)
   int fd;
   struct file *f;
 
-  if(argint(n, &fd) < 0)
+  if(argint(n, &fd) < 0)  // Read an integer from the register.
     return -1;
-  if(fd < 0 || fd >= NOFILE || (f=myproc()->ofile[fd]) == 0)
+  if(fd < 0 || fd >= NOFILE || (f=myproc()->ofile[fd]) == 0)  // Check fd's validity.
     return -1;
-  if(pfd)
+  if(pfd)  // Return the file descriptor.
     *pfd = fd;
-  if(pf)
+  if(pf)  // Return the corresponding struct file.
     *pf = f;
   return 0;
 }

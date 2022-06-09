@@ -6,10 +6,10 @@
 # exec(init, argv)
 .globl start
 start:
-        la a0, init
-        la a1, argv
-        li a7, SYS_exec
-        ecall
+        la a0, init             # Places arguments for exec in registers a0 and a1.
+        la a1, argv             
+        li a7, SYS_exec         # Puts the system call number in a7.
+        ecall                   # Traps into the kernel and causes uservec, usertrap, and then syscall.
 
 # for(;;) exit();
 exit:

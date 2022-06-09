@@ -103,10 +103,10 @@ walk(pagetable_t pagetable, uint64 va, int alloc)
 uint64
 walkaddr(pagetable_t pagetable, uint64 va)
 {
-  pte_t *pte;
-  uint64 pa;
+  pte_t *pte;  // Pointer to a pagetable entry.
+  uint64 pa;   // Physical address.
 
-  if(va >= MAXVA)
+  if(va >= MAXVA)  // Maximum physical address.
     return 0;
 
   pte = walk(pagetable, va, 0);
@@ -401,8 +401,8 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
   int got_null = 0;
 
   while(got_null == 0 && max > 0){
-    va0 = PGROUNDDOWN(srcva);
-    pa0 = walkaddr(pagetable, va0);
+    va0 = PGROUNDDOWN(srcva);  // srcva is a virtual address in user page table!
+    pa0 = walkaddr(pagetable, va0);  // Look up srcva in pagetable. Physical address pa0.
     if(pa0 == 0)
       return -1;
     n = PGSIZE - (srcva - va0);
