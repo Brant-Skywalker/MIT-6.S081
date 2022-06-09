@@ -168,7 +168,7 @@ syscall(void)
   int num;
   struct proc *p = myproc();
 
-  num = p->trapframe->a7;  // Retrives the system call number from the saved a7.
+  num = p->trapframe->a7;  // Retrieves the system call number from the saved a7.
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     p->trapframe->a0 = syscalls[num]();  // Call syscall. Saves the return value in a0. 
     if (p->mask & (1 << num)) {  // p->mask is an int.
