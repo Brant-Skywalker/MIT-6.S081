@@ -73,10 +73,25 @@ kalloc(void)
   acquire(&kmem.lock);
   r = kmem.freelist;
   if(r)
-    kmem.freelist = r->next;
+    kmem.freelist = r->next;  // Shrink the freelist here.
   release(&kmem.lock);
 
   if(r)
     memset((char*)r, 5, PGSIZE); // fill with junk
   return (void*)r;
+}
+
+uint64
+kfreemem(void)
+{
+  struct run* r;
+  uint64 n_page = 0;
+  acquire(&kmem.lock);
+  r = kmem.freelist;
+  while (r) {
+    r = r->next;
+    ++n_page;
+  }
+  release(&kmem.lock);
+  return n_page << 12;  // Multiply # pages by 4096.
 }

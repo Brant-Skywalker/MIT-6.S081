@@ -657,3 +657,18 @@ procdump(void)
     printf("\n");
   }
 }
+
+uint64
+nproc(void)
+{
+  struct proc* p;
+  uint64 nproc = 0;
+
+  for (p = proc; p < &proc[NPROC]; p++) {  // Iterate through the entire proc array.
+    if (UNUSED != p->state) {
+      nproc++;
+    }
+  }
+
+  return nproc;
+}
