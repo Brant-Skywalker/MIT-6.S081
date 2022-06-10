@@ -1,8 +1,7 @@
 # MIT 6.S081: Operating System Engineering
 
 This repository contains my solutions to the lab assignments of MIT
-[*6.S081: Operating System Engineering*](https://pdos.csail.mit.edu/6.828/2021/schedule.html)
-(Fall 2021). If you find any errors, please
+[*6.S081: Operating System Engineering*](https://pdos.csail.mit.edu/6.828/2021/schedule.html). If you find any errors, please
 email me at siyuanq4@illinois.edu.
 
 ### Important Information
