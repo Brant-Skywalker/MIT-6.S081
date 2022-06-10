@@ -1,11 +1,15 @@
 # MIT 6.S081: Operating System Engineering
 
 This repository contains my solutions to the lab assignments of MIT
-[*6.S081: Operating System Engineering*](https://pdos.csail.mit.edu/6.828/2020/schedule.html)
-(Fall 2020). If you find any errors, please
+[*6.S081: Operating System Engineering*](https://pdos.csail.mit.edu/6.828/2021/schedule.html)
+(Fall 2021). If you find any errors, please
 email me at siyuanq4@illinois.edu.
 
 ### Important Information
+
+**Please Note**: Lab assignments in this repository are **Fall 2021** version with a substantial amount of revisions (except lab `lazy`, which **does not exist**
+in [Fall 2021 schedule](https://pdos.csail.mit.edu/6.828/2021/schedule.html)). However, they are completed in the order specified
+in [Fall 2020 schedule](https://pdos.csail.mit.edu/6.828/2020/schedule.html).
 
 Unfortunately, I'm not an MIT student! :wink: Lab assignments will be marked complete below only after the *entire* test scripts have been
 passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly* while studying UCB CS162 concurrently. :stuck_out_tongue_closed_eyes:
