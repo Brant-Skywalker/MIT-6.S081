@@ -15,12 +15,12 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 
 ### Current Progress
 
-- [x] [Lab `util`: Unix utilities](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util)
-- [x] [Lab `syscall`: System calls](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall)
-- [ ] [**Lab `pgtbl`: Page tables (2020)**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020) :point_left:
-- [ ] [Lab `pgtbl`: Page tables (2021)](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021)
-- [ ] [Lab `traps`: Trap](https://github.com/Brant-Skywalker/MIT-6.S081/tree/traps)
-- [ ] [Lab `lazy`: Lazy allocation](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy)
+- [x] Lab [`util`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util): Unix utilities
+- [x] Lab [`syscall`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall): System calls
+- [ ] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020) :point_left:
+- [ ] Lab [`pgtbl`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021): Page tables (2021)
+- [ ] Lab [`traps`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/traps): Trap
+- [ ] Lab [`lazy`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy): Lazy allocation
 - [ ] Lab `cow`: Copy-on-write fork
 - [ ] Lab `thread`: Multithreading
 - [ ] Lab `lock`: Parallelism/locking
