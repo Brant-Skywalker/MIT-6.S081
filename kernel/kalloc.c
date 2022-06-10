@@ -19,24 +19,24 @@ struct run {
 };
 
 struct {
-  struct spinlock lock;
+  struct spinlock lock;  // The lock protects freelist.
   struct run *freelist;
 } kmem;
 
 void
-kinit()
+kinit()  // Initializes the allocator.
 {
   initlock(&kmem.lock, "kmem");
-  freerange(end, (void*)PHYSTOP);
+  freerange(end, (void*)PHYSTOP);  // Initializes the free list to hold every page betweeen end and PHYSTOP.
 }
 
 void
 freerange(void *pa_start, void *pa_end)
 {
   char *p;
-  p = (char*)PGROUNDUP((uint64)pa_start);
+  p = (char*)PGROUNDUP((uint64)pa_start);  // Ensures that it frees only aligned physical addresses.
   for(; p + PGSIZE <= (char*)pa_end; p += PGSIZE)
-    kfree(p);
+    kfree(p);  // Adds memory to the free list via per-page calls to kfree.
 }
 
 // Free the page of physical memory pointed at by v,
@@ -52,12 +52,12 @@ kfree(void *pa)
     panic("kfree");
 
   // Fill with junk to catch dangling refs.
-  memset(pa, 1, PGSIZE);
+  memset(pa, 1, PGSIZE);  // Try to cause code that uses dangling references to break faster.
 
   r = (struct run*)pa;
 
   acquire(&kmem.lock);
-  r->next = kmem.freelist;
+  r->next = kmem.freelist;  // Prepends the page to the free list.
   kmem.freelist = r;
   release(&kmem.lock);
 }
@@ -78,5 +78,5 @@ kalloc(void)
 
   if(r)
     memset((char*)r, 5, PGSIZE); // fill with junk
-  return (void*)r;
+  return (void*)r;  // Removes and returns the first element in the free list.
 }

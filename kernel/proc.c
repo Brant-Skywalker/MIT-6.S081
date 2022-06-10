@@ -256,11 +256,11 @@ growproc(int n)
   struct proc *p = myproc();
 
   sz = p->sz;
-  if(n > 0){
+  if(n > 0){ // n positive: allocate
     if((sz = uvmalloc(p->pagetable, sz, sz + n)) == 0) {
       return -1;
     }
-  } else if(n < 0){
+  } else if(n < 0){  // u negative: deallocate
     sz = uvmdealloc(p->pagetable, sz, sz + n);
   }
   p->sz = sz;
