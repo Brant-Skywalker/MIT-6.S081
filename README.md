@@ -6,7 +6,7 @@ email me at siyuanq4@illinois.edu.
 
 ### Important Information
 
-**Please Note**: Lab assignments in this repository are **Fall 2021** version with a substantial amount of revisions (except lab `lazy`, which **does not exist**
+**Please Note**: Lab assignments in this repository are **Fall 2021** version by default (except lab `lazy`, which **does not exist**
 in [Fall 2021 schedule](https://pdos.csail.mit.edu/6.828/2021/schedule.html)). However, they are completed in the order specified
 in [Fall 2020 schedule](https://pdos.csail.mit.edu/6.828/2020/schedule.html).
 
