@@ -59,10 +59,10 @@ kvminit(void)
 // Switch h/w page table register to the kernel's page table,
 // and enable paging.
 void
-kvminithart()
+kvminithart()  // Install the kernel page table!
 {
-  w_satp(MAKE_SATP(kernel_pagetable));
-  sfence_vma();
+  w_satp(MAKE_SATP(kernel_pagetable)); // Writes the physical address of the root page-table page into satp.
+  sfence_vma();  // Flushes the current CPU's TLB!
 }
 
 // Return the address of the PTE in page table pagetable
@@ -83,18 +83,18 @@ walk(pagetable_t pagetable, uint64 va, int alloc)
   if(va >= MAXVA)
     panic("walk");
 
-  for(int level = 2; level > 0; level--) {
-    pte_t *pte = &pagetable[PX(level, va)];
+  for(int level = 2; level > 0; level--) { // Descends the 3-level page table 9 bits at a time.
+    pte_t *pte = &pagetable[PX(level, va)];  // Find the PTE of either the next-level page table or the final page.
     if(*pte & PTE_V) {
-      pagetable = (pagetable_t)PTE2PA(*pte);
-    } else {
-      if(!alloc || (pagetable = (pde_t*)kalloc()) == 0)
+      pagetable = (pagetable_t)PTE2PA(*pte);  // Used as a virtual address. Direct mapping!
+    } else {  // Required page hasn't yet been allocated.
+      if(!alloc || (pagetable = (pde_t*)kalloc()) == 0)  // Allocate a new page-table page and puts its physical address in the PTE.
         return 0;
       memset(pagetable, 0, PGSIZE);
       *pte = PA2PTE(pagetable) | PTE_V;
     }
   }
-  return &pagetable[PX(0, va)];
+  return &pagetable[PX(0, va)];  // Return the address of the PTE in the lowest layer in the tree.
 }
 
 // Look up a virtual address, return the physical address,
@@ -150,7 +150,7 @@ mappages(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, int perm)
       return -1;
     if(*pte & PTE_V)
       panic("mappages: remap");
-    *pte = PA2PTE(pa) | perm | PTE_V;
+    *pte = PA2PTE(pa) | perm | PTE_V;  // Hold relavant PPN, desired permissions, and PTE_V.
     if(a == last)
       break;
     a += PGSIZE;
