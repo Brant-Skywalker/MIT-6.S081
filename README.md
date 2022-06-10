@@ -18,7 +18,7 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 - [x] [Lab `util`: Unix utilities](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util)
 - [x] [Lab `syscall`: System calls](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall)
 - [ ] [**Lab `pgtbl`: Page tables (2020)**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020) :point_left:
-- [ ] [**Lab `pgtbl`: Page tables (2021)**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021) :point_left:
+- [ ] [Lab `pgtbl`: Page tables (2021)](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021)
 - [ ] [Lab `traps`: Trap](https://github.com/Brant-Skywalker/MIT-6.S081/tree/traps)
 - [ ] [Lab `lazy`: Lazy allocation](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy)
 - [ ] Lab `cow`: Copy-on-write fork
