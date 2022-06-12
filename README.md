@@ -17,16 +17,16 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 
 - [x] Lab [`util`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util): Unix utilities
 - [x] Lab [`syscall`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall): System calls
-- [ ] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020) :point_left:
-- [x] Lab [`pgtbl`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021): Page tables (2021) 
+- [x] Lab [`pgtbl`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021): Page tables
 - [ ] Lab [`traps`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/traps): Trap
-- [ ] Lab [`lazy`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy): Lazy allocation (2020)
 - [ ] Lab `cow`: Copy-on-write fork
 - [ ] Lab `thread`: Multithreading
 - [ ] Lab `lock`: Parallelism/locking
 - [ ] Lab `fs`: File system
 - [ ] Lab `mmap`: Mmap
 - [ ] Lab `net`: Network stack
+- [ ] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020) :point_left:
+- [ ] Lab [`lazy`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy): Lazy allocation (2020)
 
 ### Update History
 
