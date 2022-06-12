@@ -1,2 +1,5 @@
-1. Page 0 contains
-2.
+1. Some other system calls that manage to read kernel data, like fstat and stat.
+
+2. Page 0 contains the data and text (program instructions). Page 2 is the user stack. The process cannot read or write
+the memory mapped by page 1 in user mode since it's the guard page with PTE_V unset. The third to last pages contains
+the heap.
