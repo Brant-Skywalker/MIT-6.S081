@@ -46,7 +46,7 @@ sys_sbrk(void)
 
   if(argint(0, &n) < 0)
     return -1;
-  
+
   addr = myproc()->sz;
   if(growproc(n) < 0)
     return -1;
@@ -81,7 +81,29 @@ int
 sys_pgaccess(void)
 {
   // lab pgtbl: your code here.
-  return 0;
+  uint64 s_va;
+  int n_scan;
+  uint64 dst_va;
+  uint buf = 0;
+  pagetable_t pgtbl = myproc()->pagetable;  // Get the current process's page table.
+
+  // Parse input arguments from registers.
+  if (0 > argaddr(0, &s_va) || 0 > argint(1, &n_scan) || 0 > argaddr(2, &dst_va)) {
+    return -1;
+  }
+
+  n_scan = n_scan > MAXSCAN ? MAXSCAN : n_scan;  // Truncate n_scan if necessary.
+  for (int i = 0; i < n_scan; ++i) {
+    pte_t* curr = walk(pgtbl, s_va + PGSIZE * i, 0);
+    if (!curr || (~(*curr) & (PTE_V | PTE_U))) { return -1; }  // Sanity check: PTE_V and PTE_U must both be set.
+    if (*curr & PTE_A) {  // Accessed!
+      buf |= (1UL << i);  // Record in the buffer.
+      *curr &= (~PTE_A);  // Recover the accessed bit.
+    }
+  }
+
+  // Now copyout to the destination buffer.
+  return copyout(pgtbl, dst_va, (char*) &buf, sizeof(buf));
 }
 #endif
 
