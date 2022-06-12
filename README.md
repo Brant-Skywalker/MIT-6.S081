@@ -17,8 +17,8 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 
 - [x] Lab [`util`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/util): Unix utilities
 - [x] Lab [`syscall`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall): System calls
-- [ ] Lab [`pgtbl`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020)
-- [ ] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021): Page tables (2021) :point_left:
+- [ ] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020) :point_left:
+- [x] Lab [`pgtbl`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2021): Page tables (2021) 
 - [ ] Lab [`traps`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/traps): Trap
 - [ ] Lab [`lazy`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy): Lazy allocation (2020)
 - [ ] Lab `cow`: Copy-on-write fork
@@ -35,3 +35,5 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 **Jun. 6, 2022** - Lab `util` completed.
 
 **Jun. 9, 2022** - Lab `syscall` started & completed.
+
+**Jun. 12, 2022** - Lab `pgtbl` (2021) completed.
