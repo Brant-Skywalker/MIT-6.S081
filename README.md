@@ -25,7 +25,7 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 - [ ] Lab **`fs`**: File system
 - [ ] Lab **`mmap`**: Mmap
 - [ ] Lab **`net`**: Network stack
-- [x] Lab [`pgtbl`](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020) 
+- [x] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl-2020): Page tables (2020) 
 - [ ] Lab [**`lazy`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/lazy): Lazy allocation (2020)
 
 ### Update History
