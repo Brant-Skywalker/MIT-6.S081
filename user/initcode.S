@@ -6,9 +6,9 @@
 # exec(init, argv)
 .globl start
 start:
-        la a0, init
+        la a0, init     # Places the arguments for exec in registers a0 and a1.
         la a1, argv
-        li a7, SYS_exec
+        li a7, SYS_exec # Puts the system call number in a7.
         ecall
 
 # for(;;) exit();
