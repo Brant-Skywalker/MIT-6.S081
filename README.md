@@ -19,7 +19,7 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 - [x] Lab [**`syscall`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/syscall): System calls
 - [x] Lab [**`pgtbl`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/pgtbl): Page tables
 - [x] Lab [**`traps`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/traps): Trap
-- [ ] **Lab **`cow`**: Copy-on-write fork**  :point_left:
+- [ ] **Lab [**`cow`**](https://github.com/Brant-Skywalker/MIT-6.S081/tree/cow): Copy-on-write fork**  :point_left:
 - [ ] Lab **`thread`**: Multithreading
 - [ ] Lab **`lock`**: Parallelism/locking
 - [ ] Lab **`fs`**: File system
