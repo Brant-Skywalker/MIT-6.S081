@@ -1,0 +1,14 @@
+1. a0-7 and fa0-7 contain arguments to functions. In main's call to `printf`, a2 holds 13.
+
+2. There are no explicit calls to function `f` or `g` since the compiler calculates
+the value of `f(8) + 1` during compile time and directly passes the immediate value 12 to `printf`.
+The implicit function call is in address 26.
+
+3. The address of the function `printf` is 0x628.
+
+4. 0x38 is in the register `ra` just after the `jalr` to `printf` in `main` since the address of the
+instruction following the jump (pc + 4) is written to register `rd` (i.e. `ra`).
+
+5. It prints "He110 World". `i` should be set to 0x726c6400 if RISC-V were instead big-endian. 57616 does not to be changed.
+
+6. Whatever happens to be in register `a2`.
