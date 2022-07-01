@@ -74,8 +74,10 @@ usertrap(void)
     if (0 == (mem = kalloc())) {
       exit(-1);
     }
+
     memset(mem, 0, PGSIZE);
-    if (0 != mappages(p->pagetable, va, PGSIZE, (uint64) mem, PTE_R | PTE_W)) {
+
+    if (0 != mappages(p->pagetable, va, PGSIZE, (uint64) mem, PTE_R | PTE_W | PTE_X)) {
       kfree(mem);
       exit(-1);
     }
