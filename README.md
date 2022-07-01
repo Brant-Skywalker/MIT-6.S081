@@ -32,18 +32,18 @@ passed, unless explicitly stated. Let's enjoy these labs *slowly but thoroughly*
 
 ### Update History
 
-**Jun. 3, 2022** - Happy summer holiday! Let's start lab `util`.
+**June 3, 2022** - Happy summer holiday! Let's start lab `util`.
 
-**Jun. 6, 2022** - Lab `util` completed.
+**June 6, 2022** - Lab `util` completed.
 
-**Jun. 9, 2022** - Lab `syscall` completed.
+**June 9, 2022** - Lab `syscall` completed.
 
-**Jun. 12, 2022** - Lab `pgtbl` completed.
+**June 12, 2022** - Lab `pgtbl` completed.
 
-**Jun. 26, 2022** - I'm back! Lab `traps` completed.
+**June 26, 2022** - I'm back! Lab `traps` completed.
 
-**Jul. 1, 2022** - Lab `lazy` completed.
+**July 1, 2022** - Lab `lazy` completed.
 
 <!---
-**Jun. 14, 2022** - Lab `pgtbl` (2020) done. *Not 100% understood.*
+**June 14, 2022** - Lab `pgtbl` (2020) done. *Not 100% understood.*
 -->
