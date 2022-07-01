@@ -77,7 +77,7 @@ usertrap(void)
 
     memset(mem, 0, PGSIZE);
 
-    if (0 != mappages(p->pagetable, va, PGSIZE, (uint64) mem, PTE_R | PTE_W | PTE_X)) {
+    if (0 != mappages(p->pagetable, va, PGSIZE, (uint64) mem, PTE_R | PTE_W | PTE_X | PTE_U)) {
       kfree(mem);
       exit(-1);
     }
