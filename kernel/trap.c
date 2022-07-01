@@ -69,7 +69,7 @@ usertrap(void)
     // ok
   } else if (13 == r_scause() || 15 == r_scause()) {
     uint64 va = PGROUNDDOWN(r_stval());
-    if (va >= p->sz) {
+    if (va >= p->sz || va < p->trapframe->sp) {
       p->killed = 1;
       goto EXIT;
     }
