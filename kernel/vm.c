@@ -356,12 +356,25 @@ int
 copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)
 {
   uint64 n, va0, pa0;
+  struct proc* p = myproc();
 
   while(len > 0){
     va0 = PGROUNDDOWN(dstva);
     pa0 = walkaddr(pagetable, va0);
-    if(pa0 == 0)
-      return -1;
+    if (pa0 == 0) {
+      if (va0 >= p->sz || va0 < p->trapframe->sp) {
+        return -1;
+      }
+      if (0 == (pa0 = (uint64) kalloc())) {
+        return -1;
+      }
+      memset((void*) pa0, 0, PGSIZE);
+      va0 = PGROUNDDOWN(va0);
+      if (0 != mappages(p->pagetable, va0, PGSIZE, pa0, PTE_R | PTE_W | PTE_U)) {
+        kfree((void*) pa0);
+        return -1;
+      }
+    }
     n = PGSIZE - (dstva - va0);
     if(n > len)
       n = len;
@@ -381,12 +394,25 @@ int
 copyin(pagetable_t pagetable, char *dst, uint64 srcva, uint64 len)
 {
   uint64 n, va0, pa0;
+  struct proc* p = myproc();
 
   while(len > 0){
     va0 = PGROUNDDOWN(srcva);
     pa0 = walkaddr(pagetable, va0);
-    if(pa0 == 0)
-      return -1;
+    if (pa0 == 0) {
+      if (va0 >= p->sz || va0 < p->trapframe->sp) {
+        return -1;
+      }
+      if (0 == (pa0 = (uint64) kalloc())) {
+        return -1;
+      }
+      memset((void*) pa0, 0, PGSIZE);
+      va0 = PGROUNDDOWN(va0);
+      if (0 != mappages(p->pagetable, va0, PGSIZE, pa0, PTE_R | PTE_W | PTE_U)) {
+        kfree((void*) pa0);
+        return -1;
+      }
+    }
     n = PGSIZE - (srcva - va0);
     if(n > len)
       n = len;

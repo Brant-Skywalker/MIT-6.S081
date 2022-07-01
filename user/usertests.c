@@ -2685,63 +2685,63 @@ main(int argc, char *argv[])
     void (*f)(char *);
     char *s;
   } tests[] = {
-    /* {execout, "execout"}, */
-    /* {copyin, "copyin"}, */
-    /* {copyout, "copyout"}, */
-    /* {copyinstr1, "copyinstr1"}, */
-    /* {copyinstr2, "copyinstr2"}, */
-    /* {copyinstr3, "copyinstr3"}, */
-    /* {rwsbrk, "rwsbrk" }, */
-    /* {truncate1, "truncate1"}, */
-    /* {truncate2, "truncate2"}, */
-    /* {truncate3, "truncate3"}, */
-    /* {reparent2, "reparent2"}, */
-    /* {pgbug, "pgbug" }, */
-    /* {sbrkbugs, "sbrkbugs" }, */
-    /* // {badwrite, "badwrite" }, */
-    /* {badarg, "badarg" }, */
-    /* {reparent, "reparent" }, */
-    /* {twochildren, "twochildren"}, */
-    /* {forkfork, "forkfork"}, */
-    /* {forkforkfork, "forkforkfork"}, */
-    /* {argptest, "argptest"}, */
-    /* {createdelete, "createdelete"}, */
-    /* {linkunlink, "linkunlink"}, */
-    /* {linktest, "linktest"}, */
-    /* {unlinkread, "unlinkread"}, */
-    /* {concreate, "concreate"}, */
-    /* {subdir, "subdir"}, */
-    /* {fourfiles, "fourfiles"}, */
-    /* {sharedfd, "sharedfd"}, */
-    /* {exectest, "exectest"}, */
-    /* {bigargtest, "bigargtest"}, */
-    /* {bigwrite, "bigwrite"}, */
-    /* {bsstest, "bsstest"}, */
-    /* {sbrkbasic, "sbrkbasic"}, */
-    /* {sbrkmuch, "sbrkmuch"}, */
-    /* {kernmem, "kernmem"}, */
-    /* {sbrkfail, "sbrkfail"}, */
-    /* {sbrkarg, "sbrkarg"}, */
-    /* {validatetest, "validatetest"}, */
+    {execout, "execout"},
+    {copyin, "copyin"},
+    {copyout, "copyout"},
+    {copyinstr1, "copyinstr1"},
+    {copyinstr2, "copyinstr2"},
+    {copyinstr3, "copyinstr3"},
+    {rwsbrk, "rwsbrk" },
+    {truncate1, "truncate1"},
+    {truncate2, "truncate2"},
+    {truncate3, "truncate3"},
+    {reparent2, "reparent2"},
+    {pgbug, "pgbug" },
+    {sbrkbugs, "sbrkbugs" },
+    // {badwrite, "badwrite" },
+    {badarg, "badarg" },
+    {reparent, "reparent" },
+    {twochildren, "twochildren"},
+    {forkfork, "forkfork"},
+    {forkforkfork, "forkforkfork"},
+    {argptest, "argptest"},
+    {createdelete, "createdelete"},
+    {linkunlink, "linkunlink"},
+    {linktest, "linktest"},
+    {unlinkread, "unlinkread"},
+    {concreate, "concreate"},
+    {subdir, "subdir"},
+    {fourfiles, "fourfiles"},
+    {sharedfd, "sharedfd"},
+    {exectest, "exectest"},
+    {bigargtest, "bigargtest"},
+    {bigwrite, "bigwrite"},
+    {bsstest, "bsstest"},
+    {sbrkbasic, "sbrkbasic"},
+    {sbrkmuch, "sbrkmuch"},
+    {kernmem, "kernmem"},
+    {sbrkfail, "sbrkfail"},
+    {sbrkarg, "sbrkarg"},
+    {validatetest, "validatetest"},
     {stacktest, "stacktest"},
-    /* {opentest, "opentest"}, */
-    /* {writetest, "writetest"}, */
-    /* {writebig, "writebig"}, */
-    /* {createtest, "createtest"}, */
-    /* {openiputtest, "openiput"}, */
-    /* {exitiputtest, "exitiput"}, */
-    /* {iputtest, "iput"}, */
-    /* {mem, "mem"}, */
-    /* {pipe1, "pipe1"}, */
-    /* {preempt, "preempt"}, */
-    /* {exitwait, "exitwait"}, */
-    /* {rmdot, "rmdot"}, */
-    /* {fourteen, "fourteen"}, */
-    /* {bigfile, "bigfile"}, */
-    /* {dirfile, "dirfile"}, */
-    /* {iref, "iref"}, */
-    /* {forktest, "forktest"}, */
-    /* {bigdir, "bigdir"}, // slow */
+    {opentest, "opentest"},
+    {writetest, "writetest"},
+    {writebig, "writebig"},
+    {createtest, "createtest"},
+    {openiputtest, "openiput"},
+    {exitiputtest, "exitiput"},
+    {iputtest, "iput"},
+    {mem, "mem"},
+    {pipe1, "pipe1"},
+    {preempt, "preempt"},
+    {exitwait, "exitwait"},
+    {rmdot, "rmdot"},
+    {fourteen, "fourteen"},
+    {bigfile, "bigfile"},
+    {dirfile, "dirfile"},
+    {iref, "iref"},
+    {forktest, "forktest"},
+    {bigdir, "bigdir"}, // slow
     { 0, 0},
   };
 
