@@ -80,7 +80,7 @@ usertrap(void)
       goto EXIT;
     }
     memset((void*) ka, 0, PGSIZE);
-    if (0 != mappages(p->pagetable, va, PGSIZE, ka, PTE_R | PTE_W | PTE_U)) {
+    if (0 != mappages(p->pagetable, va, PGSIZE, ka, PTE_R | PTE_W | PTE_X | PTE_U)) {
       kfree((void*) ka);
       p->killed = 1;
     }
