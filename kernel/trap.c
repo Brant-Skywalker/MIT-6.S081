@@ -69,8 +69,8 @@ usertrap(void)
     // ok
   } else if (13 == r_scause() || 15 == r_scause()) {
     uint64 va = PGROUNDDOWN(r_stval());
+    printf("page fault %p\n", va);
     uint64 ka = (uint64) kalloc();
-    
     if (0 == ka) {
       p->killed = 1;
     } else {
