@@ -69,23 +69,27 @@ usertrap(void)
     // ok
   } else if (13 == r_scause() || 15 == r_scause()) {
     uint64 va = PGROUNDDOWN(r_stval());
+    if (va >= p->sz) {
+      p->killed = 1;
+      goto EXIT;
+    }
     /* printf("page fault %p\n", va); */
     uint64 ka = (uint64) kalloc();
     if (0 == ka) {
       p->killed = 1;
-    } else {
-      memset((void*) ka, 0, PGSIZE);
-      if (0 != mappages(p->pagetable, va, PGSIZE, ka, PTE_R | PTE_W | PTE_U)) {
-        kfree((void*) ka);
-        p->killed = 1;
-      }
+      goto EXIT;
+    }
+    memset((void*) ka, 0, PGSIZE);
+    if (0 != mappages(p->pagetable, va, PGSIZE, ka, PTE_R | PTE_W | PTE_U)) {
+      kfree((void*) ka);
+      p->killed = 1;
     }
   } else {
     printf("usertrap(): unexpected scause %p pid=%d\n", r_scause(), p->pid);
     printf("            sepc=%p stval=%p\n", r_sepc(), r_stval());
     p->killed = 1;
   }
-
+  EXIT:
   if(p->killed)
     exit(-1);
 
